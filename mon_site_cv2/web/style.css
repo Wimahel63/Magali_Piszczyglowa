@@ -1,0 +1,9 @@
+body{
+    background: url(pavin.jpg) no-repeat;
+    background-size: 100%;
+}
+
+.jumbotron{
+    /*background:url(pavin.jpg) no-repeat;*/
+    background-color: rgba(255, 255, 255, 0.2);
+}

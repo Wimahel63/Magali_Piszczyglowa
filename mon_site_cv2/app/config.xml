@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <host>localhost</host>
+    <user>root</user>
+    <password></password>
+    <db>mon_site_cv</db>
+    <table>t_experience</table> 
+    <table2>t_formation</table2>
+    <table3>t_realisation</table3>
+    <table4>t_skill</table4>
+    <table5>t_user</table5>
+</config>

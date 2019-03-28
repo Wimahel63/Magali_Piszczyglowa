@@ -1,0 +1,90 @@
+/* .img-1{
+    background-image:url(pyrenees.jpg) no-repeat;
+} */
+/* body{
+font-family: 'Tangerine', cursive;
+font-size:2.2em;
+} */
+
+body{
+  background: url(chambon.JPG) no-repeat ;
+  background-size: 100%;
+}
+.jumbotron{
+    background:url(pyrenees.jpg) no-repeat;
+}
+
+
+
+
+
+/*******lien sur le h*********/
+
+h1{
+  text-shadow: 0 0 0.2em #212529, 0 0 0.2em rgb(241, 218, 154);
+}
+.hidden
+{
+    color:#212529;
+}      
+
+.hidden:hover
+{
+    color:#212529;
+    text-decoration: none;
+}      
+
+
+#realisation{
+  float:right;
+}
+
+
+/*********************************/
+
+.formulaireContact{
+  float:right;
+}
+
+.social{
+  float:left;
+}
+
+.clear{
+  clear:both;
+}
+
+ul li{
+  margin-top:30px;
+  list-style-type: none;
+}
+
+.card{
+  box-shadow: 5px 5px 5px grey;
+  height:280px;
+  /* float:left;
+  margin-left:20px; */
+}
+
+#donnees{
+  box-shadow: 5px 5px 5px grey;
+  float:left;
+  margin-left:20px;
+}
+.card-header{
+  background:linear-gradient(to top, #FFFFF3, #F2E3DC);
+}
+
+.card-body{
+  background:linear-gradient(#FFFFF3, #F2E3DC);
+}
+
+#profile{
+   margin:0 auto;
+   font-size:1.5em;
+}
+
+.social i{
+  font-size:80px;
+  color:#515151;
+}
