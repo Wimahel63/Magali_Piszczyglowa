@@ -1,29 +1,42 @@
-/* .img-1{
-    background-image:url(pyrenees.jpg) no-repeat;
-} */
-/* body{
-font-family: 'Tangerine', cursive;
-font-size:2.2em;
-} */
-
+/****layout et general***/
 body{
   background: url(chambon.JPG) no-repeat ;
   background-size: 100%;
 }
+
 .jumbotron{
     background:url(pyrenees.jpg) no-repeat;
 }
 
+.card{
+  box-shadow: 5px 5px 5px grey;
+  height:280px;
+  /* float:left;
+  margin-left:20px; */
+}
+
+.card-header{
+  background:linear-gradient(to top, #FFFFF3, #F2E3DC);
+}
 
 
+#donnees{
+  box-shadow: 5px 5px 5px grey;
+  float:left;
+  margin-left:20px;
+}
 
 
+.card-body{
+  background:linear-gradient(#FFFFF3, #F2E3DC);
+}
 /*******lien sur le h*********/
 
 h1{
-  text-shadow: 0 0 0.2em #212529, 0 0 0.2em rgb(241, 218, 154);
+  text-shadow: 0 0 0.2em #212529, 0 0 0.2em rgb(241, 218, 154); /*ombre sur le titre*/
 }
-.hidden
+
+.hidden /*pour camoufler le lien du h*/
 {
     color:#212529;
 }      
@@ -34,13 +47,14 @@ h1{
     text-decoration: none;
 }      
 
+/******page realisation*******/
 
 #realisation{
   float:right;
 }
 
 
-/*********************************/
+/**********page contact***********************/
 
 .formulaireContact{
   float:right;
@@ -59,25 +73,8 @@ ul li{
   list-style-type: none;
 }
 
-.card{
-  box-shadow: 5px 5px 5px grey;
-  height:280px;
-  /* float:left;
-  margin-left:20px; */
-}
 
-#donnees{
-  box-shadow: 5px 5px 5px grey;
-  float:left;
-  margin-left:20px;
-}
-.card-header{
-  background:linear-gradient(to top, #FFFFF3, #F2E3DC);
-}
 
-.card-body{
-  background:linear-gradient(#FFFFF3, #F2E3DC);
-}
 
 #profile{
    margin:0 auto;

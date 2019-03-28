@@ -65,11 +65,11 @@ $resultat=$bdd->exec("INSERT INTO t_realisation (photo) VALUES ('$photoBdd') ");
   </div>
   <button type="submit" class="btn btn-primary">Valider</button>
 </form>
- <?php foreach($donnees as $value): ?>
-<div class="col-md-6 text-center p-2" id="realisation">
-        <img src="<?= $value['photo'] ?>" alt="realisation" class="col-md-6" id="mesReal">
-</div>
+ <?//php foreach($donnees as $value): ?>
+<!-- <div class="col-md-6 text-center p-2" id="realisation">
+        <img src="<?//= $value['photo'] ?>" alt="realisation" class="col-md-6" id="mesReal">
+</div> -->
 </div>
 
-<?php endforeach; ?>
+<?//php endforeach; ?>
 <div class="clear"></div>

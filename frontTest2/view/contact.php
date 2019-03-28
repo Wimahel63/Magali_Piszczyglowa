@@ -14,6 +14,8 @@
     <a href="<?= $value['email'] ?>"><i class="fas fa-at"> </a></i>
     </li>
 
+    
+
     <?php endforeach; ?>
   </ul>
 </div>

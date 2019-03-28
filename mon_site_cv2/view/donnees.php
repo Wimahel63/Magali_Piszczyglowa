@@ -23,7 +23,7 @@
     <?php foreach($donnees as $value): 
        // echo '<pre>'; print_r($value); echo '</pre>';
        // $value possède un tableau ARRAY avec les données d'un employé par tour de boucle
-       // implode() permet d'extraire les données de chaque tableau ARRAY par employé
+       // implode() permet d'extraire les données de chaque tableau ARRAY par element
         ?>
         <tr>
             <td><?= implode('</td><td>', $value) ?></td>
