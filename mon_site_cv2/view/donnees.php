@@ -1,17 +1,10 @@
 <?php 
-// var_dump($donnees);
-//echo '<pre>'; print_r($fields); echo '</pre>';
+//page de vue d'affichage des experiences et des formations pour la methode selectAll
 ?>
 
-
-<!-- Faites en sorte d'avoir 3 colonnes en plus : 
-    - une colonne permettant de voir le détail de l'employé
-    - une colonne pour modifier
-    - une colonne pour supprimer
--->
 <table class="table table-bordered text-center">
     <thead><tr>
-        <th>ID</th><!-- à cause du array_splice permettant de ne pas affocher le champs idEmploye dans le formualire d'ajout, on déclare manuellement un entête, sinon décalage  -->
+        <th>ID</th><!-- à cause du array_splice permettant de ne pas afficher le champs id dans le formulaire d'ajout, on déclare manuellement un entête, sinon décalage  -->
     <?php foreach($fields as $value): ?>
         <th><?= $value['Field'] ?></th>
     <?php endforeach; ?>

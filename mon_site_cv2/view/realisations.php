@@ -1,14 +1,7 @@
 <?php 
-// var_dump($donnees);
-//echo '<pre>'; print_r($fields); echo '</pre>';
+//Comme pour les competences, ce fichier sert à afficher les realisations mais aussi a uploader des fichiers
 ?>
 
-
-<!-- Faites en sorte d'avoir 3 colonnes en plus : 
-    - une colonne permettant de voir le détail de l'employé
-    - une colonne pour modifier
-    - une colonne pour supprimer
--->
 <table class="table table-bordered text-center">
     <thead><tr>
         <!--<th>ID</th> à cause du array_splice permettant de ne pas afficher le champs idEmploye dans le formualire d'ajout, on déclare manuellement un entête, sinon décalage  -->
@@ -22,8 +15,8 @@
     <tbody>
     <?php foreach($donnees as $value): 
        // echo '<pre>'; print_r($value); echo '</pre>';
-       // $value possède un tableau ARRAY avec les données d'un employé par tour de boucle
-       // implode() permet d'extraire les données de chaque tableau ARRAY par employé
+       // $value possède un tableau ARRAY avec les données d'une realisation par tour de boucle
+       // implode() permet d'extraire les données de chaque tableau ARRAY par realisation
         ?>
         <tr>
            <!-- <td><?= implode('</td><td>', $value) ?></td>-->
@@ -40,7 +33,7 @@
 <?php 
 $bdd= new PDO('mysql:host=localhost; dbname=mon_site_cv', 'root', '');
 
-if(!empty($_FILES['photo']['name'])){//si name est different de vide, j'ai bien telecharger une photo
+if(!empty($_FILES['photo']['name'])){//si name est different de vide, j'ai bien telechargé une photo
    $nom_photo=uniqid(). '-' . $_FILES['photo']['name'];//je genere un id unique pour chaque photo avec uniqid(). Avec ce code je definis le nom de la photo
 //    echo $nom_photo .'<br>';
 
@@ -57,6 +50,8 @@ if(!empty($_FILES['photo']['name'])){//si name est different de vide, j'ai bien 
 $resultat=$bdd->exec("INSERT INTO t_realisation (photo) VALUES ('$photoBdd') ");//j'insere mes photos (leur url uniquement) uploadées dans ma bdd grâce à ce code . Ce code doit bien être dans la condition, sinon dès que l'on rafraichit la page, l'action s'effectue quand même et une insertion vide est faite dans la bdd, même si on ne choisit pas de fichier
 }
 ?>
+
+<!--formulaire d'upload de fichiers-->
 <div>
 <form method="post" action="" enctype="multipart/form-data" class="col-md-6 offset-md-3 text-center">
   <div class="form-group">
@@ -65,11 +60,24 @@ $resultat=$bdd->exec("INSERT INTO t_realisation (photo) VALUES ('$photoBdd') ");
   </div>
   <button type="submit" class="btn btn-primary">Valider</button>
 </form>
- <?//php foreach($donnees as $value): ?>
-<!-- <div class="col-md-6 text-center p-2" id="realisation">
-        <img src="<?//= $value['photo'] ?>" alt="realisation" class="col-md-6" id="mesReal">
-</div> -->
 </div>
+<!-- <div class="col-md-6 text-center p-2" id="realisation">
+        <img src="" alt="realisation" class="col-md-6" id="mesReal">
+</div> -->
 
-<?//php endforeach; ?>
+<!-- <?php foreach($donnees as $value): ?>
+<div class="container">
+<div id="carousel">
+			<figure><img src="<?= $value['photo'] ?> " alt=" " class="slide"></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/2" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/3" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/4" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/5" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/6" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/7" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/8" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/people/9" alt=""></figure>
+		</div></div>
+<?php endforeach; ?> -->
+
 <div class="clear"></div>

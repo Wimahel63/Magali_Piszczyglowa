@@ -1,17 +1,12 @@
 <?php 
-// var_dump($donnees);
-//echo '<pre>'; print_r($fields); echo '</pre>';
+//Même vue que pour experience et formation a ceci pret qu'ici j'ai ds balises img pour afficher mes donnees pour la methode selectAll et un input file pour l'upload des fichiers
 ?>
 
 
-<!-- Faites en sorte d'avoir 3 colonnes en plus : 
-    - une colonne permettant de voir le détail de l'employé
-    - une colonne pour modifier
-    - une colonne pour supprimer
--->
+
 <table class="table table-bordered text-center">
     <thead><tr>
-        <!--<th>ID</th> à cause du array_splice permettant de ne pas afficher le champs idEmploye dans le formualire d'ajout, on déclare manuellement un entête, sinon décalage  -->
+        
     <?php foreach($fields as $value): ?>
         <th><?= $value['Field'] ?></th>
     <?php endforeach; ?>
@@ -21,12 +16,11 @@
     </tr></thead>
     <tbody>
     <?php foreach($donnees as $value): 
-       // echo '<pre>'; print_r($value); echo '</pre>';
-       // $value possède un tableau ARRAY avec les données d'un employé par tour de boucle
-       // implode() permet d'extraire les données de chaque tableau ARRAY par employé
+       
+       // implode() permet d'extraire les données de chaque tableau ARRAY par competence
         ?>
         <tr>
-           <!-- <td><?= implode('</td><td>', $value) ?></td>-->
+           <!-- <td><?= implode('</td><td>', $value) ?></td> -->
               <td><img src="<?=  $value['competence'] ?>" width="90;" height="110;"></td>
             <td><a href="?op=select&id=<?= $value[$id] ?>" class="text-dark"><i class="fas fa-binoculars"></i></a></td>
             <td><a href="?op=update&id=<?= $value[$id] ?>" class="text-dark"><i class="fas fa-tools"></i></a></td>
@@ -36,7 +30,7 @@
     </tbody>
 
 </table>
-<!-- <div><a href="?op=add" class="btn btn-large btn-info mb-2"><i class="fas fa-plus"></i> Ajouter une nouvelle donnée</a></div> -->
+
 <?php 
 $bdd= new PDO('mysql:host=localhost; dbname=mon_site_cv', 'root', '');
 
@@ -65,11 +59,13 @@ $resultat=$bdd->exec("INSERT INTO t_skill (competence) VALUES ('$photoBdd') ");/
   </div>
   <button type="submit" class="btn btn-primary">Valider</button>
 </form>
- <?php foreach($donnees as $value): ?>
+ <!-- <?//php foreach($donnees as $value): ?>
 <div class="col-md-6 text-center p-2" id="realisation">
-        <img src="<?= $value['competence'] ?>" alt="realisation" class="col-md-6" id="mesReal">
+        <img src="<?//= $value['competence'] ?>" alt="realisation" class="col-md-6" id="mesReal">
 </div>
+<?//php endforeach; ?> -->
+
 </div>
 
-<?php endforeach; ?>
+
 <div class="clear"></div>

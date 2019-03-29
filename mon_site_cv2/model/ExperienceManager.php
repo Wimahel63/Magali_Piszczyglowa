@@ -38,7 +38,7 @@ class ExperienceManager
     {
         $q = $this->getDb()->query("DESC " . $this->table); // DESC : description de la table
         $r = $q->fetchAll(\PDO::FETCH_ASSOC);
-        return array_splice($r, 1); // permet de ne pas récupérer le premier champs idEmploye dans le formulaire, dans la BDD grace à la fonction prédéfinie array_splice()
+        return array_splice($r, 1); // permet de ne pas récupérer le premier champs id dans le formulaire, dans la BDD grace à la fonction prédéfinie array_splice()
     }
 
     public function select($id) // méthode permettant de récupérer les données d'un employé via son id
@@ -77,9 +77,7 @@ class ExperienceManager
     {
         $q = $this->getDb()->query("DELETE FROM " . $this->table . " WHERE id_" . $this->table . '=' . (int) $id);
 
-        // ucfirst($this->table)  idEmploye
+        
     }
 }
 
-// $a = new EntityRepository;
-// $a->getDb();

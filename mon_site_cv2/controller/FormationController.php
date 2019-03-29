@@ -16,6 +16,7 @@ class FormationController
             if($op == 'add' || $op == 'update') $this->save($op); // si on ajoute ou modifie un employé, on appel la méthode save()
             elseif($op == 'select') $this->select(); // si on selectionne un employé, on appel la méthode select()
             elseif($op == 'delete') $this->delete(); // si on supprime un employé, on appel la méthode delete()
+            elseif($op == 'deconnexion') $this->deconnexion();
             else $this->selectAll(); // permettra d'afficher l'ensemble des employés
         }
         catch(Exception $e)
@@ -62,7 +63,7 @@ class FormationController
     {
         $id = isset($_GET['id']) ? $_GET['id'] : NULL;
         $this->render('layout.php', 'detail.php', array(
-            "title" => "Détail de l'employé ID : $id",
+            "title" => "Formation : $id",
             "donnees" => $this->db->select($id)
         ));
     }
@@ -96,5 +97,11 @@ class FormationController
             "fields" => $this->db->getFields(), // c'est ce qui va nous permettre de récupérer le nom des champs pour les définir de façon générique
             "values" => $values // permet de récupérer toute les données de l'employé en cas de modification
         ));
+    }
+
+    public function deconnexion()
+    {
+        session_destroy();
+        $this->redirect('./../index.php');
     }
 }

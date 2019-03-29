@@ -1,5 +1,6 @@
 <?php
-//echo '<pre>'; print_r($donnees); echo '</pre>';
+//affichage des details lors de la methode select
+echo '<pre>'; print_r($value); echo '</pre>'; 
 ?>
 
 <ul class="col-md-4 offset-md-4 list-group text-center mb-4">

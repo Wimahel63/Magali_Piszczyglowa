@@ -36,12 +36,12 @@ class FormationManager
 
     public function getFields() // méthode permettant de recolter les données des champs/colonne de la table, c'est un code générique, on récuperera les données de n'importe quelle table
     {
-        $q = $this->getDb()->query("DESC " . $this->table2); // DESC : description de la table
+        $q = $this->getDb()->query("DESC " . $this->table2); // DESC : ici, description de la table
         $r = $q->fetchAll(\PDO::FETCH_ASSOC);
         return array_splice($r, 1); // permet de ne pas récupérer le premier champs idEmploye dans le formulaire, dans la BDD grace à la fonction prédéfinie array_splice()
     }
 
-    public function select($id) // méthode permettant de récupérer les données d'un employé via son id
+    public function select($id) // méthode permettant de récupérer les données d'une formation via son id
     {
         $q = $this->getDb()->query("SELECT * FROM " . $this->table2 . " WHERE id_" . $this->table2 . "=" . (int) $id);
         $r = $q->fetch(\PDO::FETCH_ASSOC);
@@ -50,8 +50,8 @@ class FormationManager
 
     public function selectAll()
     {
-        //  $q = $this->getDb()->query("SELECT * FROM employe");
-        $q = $this->getDb()->query("SELECT * FROM " . $this->table2); //  requete permettant de selectionner toute une table, $this->table : représente dans notre cas la table 'employe'
+        //  $q = $this->getDb()->query("SELECT * FROM t_formation");
+        $q = $this->getDb()->query("SELECT * FROM " . $this->table2); 
         $r = $q->fetchAll(\PDO::FETCH_ASSOC); 
         return $r;
     }
@@ -62,7 +62,6 @@ class FormationManager
 
         $q = $this->getDb()->query('REPLACE INTO ' . $this->table2 . '(id_' . $this->table2 . ',' . implode(',', array_keys($_POST)) . ') VALUES (' . $id . ',' . "'" . implode("','", $_POST) . "'" . ')');
 
-        //echo 'REPLACE INTO ' . $this->table . '(id' . ucfirst($this->table) . ',' . implode(',', array_keys($_POST)) . ') VALUES (' . $id . ',' . "'" . implode("','", $_POST) . "'" . ')';
 
         /*
             - ucfirst($this->table) --> idEmploye 
@@ -76,10 +75,6 @@ class FormationManager
     public function delete($id)
     {
         $q = $this->getDb()->query("DELETE FROM " . $this->table2 . " WHERE id_" . $this->table2 . '=' . (int) $id);
-
-        // ucfirst($this->table)  idEmploye
     }
 }
 
-// $a = new EntityRepository;
-// $a->getDb();

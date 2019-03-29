@@ -76,10 +76,6 @@ class RealisationManager
     public function delete($id)
     {
         $q = $this->getDb()->query("DELETE FROM " . $this->table3 . " WHERE id_" . $this->table3 . '=' . (int) $id);
-
-        // ucfirst($this->table)  idEmploye
     }
 }
 
-// $a = new EntityRepository;
-// $a->getDb();

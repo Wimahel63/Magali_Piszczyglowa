@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!doctype html>
 <html lang="fr">
   <head>
@@ -17,7 +21,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-primary bg-light">
-    <a class="navbar-brand" href="./../frontTest2/index.php">Site CV</a>
+    <a class="navbar-brand" href="./../index.php">Site CV</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,7 +44,8 @@
             <a class="nav-link" href="realisation.php">Réalisations</a>
         </li>
         </ul>
-        <button type="button" class="btn btn-outline-light" action="deconnexion">Deconnexion</button>
+       <i class="fas fa-dragon"></i> <?php echo ' Hello ' . $_SESSION['pseudo']; ?><i class="far fa-smile-wink"></i>
+        <a class="btn btn-outline-light" href="?op=deconnexion">Deconnexion</a>
         
     </div>
     </nav>
@@ -53,7 +58,7 @@
     </div>
 
     <footer class="bg-light text-center text-primary p-2">
-        &copy; 2019 - MHP - Mon site CV !!!
+        &copy; 2019 - <i class="fas fa-dragon"></i> MHP - Mon site CV !!!
     </footer>
 
 

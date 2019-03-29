@@ -16,6 +16,7 @@ class CompetenceController
             if($op == 'add' || $op == 'update') $this->save($op); // si on ajoute ou modifie un employé, on appel la méthode save()
             elseif($op == 'select') $this->select(); // si on selectionne un element, on appelle la méthode select()
             elseif($op == 'delete') $this->delete(); // si on supprime un element, on appelle la méthode delete()
+            elseif($op == 'deconnexion') $this->deconnexion();
             else $this->selectAll(); // permettra d'afficher l'ensemble des donnees d'une table
         }
         catch(Exception $e)
@@ -23,32 +24,32 @@ class CompetenceController
             throw new Exception($e->getMessage()); // permet d'envoyer un message et d'arreter le script si il y a une erreur dans le bloc try
         }
     }
+
+
     public function selectAll()
     {
-        // echo 'Methode selectAll()';
-        // $r = $this->db->selectAll();
-        // echo '<pre>'; print_r($r); echo '</pre>';
         $this->render('layout.php', 'competences.php', array(
             'title' => 'Mes competences',
             'donnees' => $this->db->selectAll(),
             'fields' => $this->db->getFields(),
-            'id' => 'id_' . $this->db->table // affiche idEmploye, cela servira a pointé sur l'indice idEmploye du tableau de données envoyer dans le layout pour les liens voir/modifier/supprimer
+            'id' => 'id_' . $this->db->table4 // affiche id_t_skill, cela servira a pointé sur l'indice id_t_skill du tableau de données envoyé dans le layout pour les liens voir/modifier/supprimer
         ));
     }
-    // $this->render('layout.php', 'donnees.php' , 'paramètres');
+
+    
+    // methode qui me permettra de selectionner le template à partir duquel seront affichées mes données
     public function render($layout, $template, $parameters = array())
     {
         extract($parameters);  // permet d'avoir des indices du tableau comme variable
         ob_start(); // commence la temporisation, ob_start() démarrer la temporisation de sortie
-        // require "view/donnees.php";
+        
         require "view/$template";
 
         //$content =  require "view/$template";
         $content = ob_get_clean(); // tout ce qui se trouve dans le template sera stocké dans $content 
-        //$content = "view/donnees.php";
-
+       
         ob_start(); // temporiser la sortie de l'affichage
-        // require "view/layout.php";
+       
         require "view/$layout";
         return ob_end_flush(); // libérer l'affichage et fait tout apparaitre sur la page 
     }
@@ -58,20 +59,24 @@ class CompetenceController
         header("Location:" . $url); // fonction prédéfinie permettant d'effectuer une redirection
     }
 
-    public function select() // méthode permettant de voir le détail d'un employé, quand on clic sur le lien 'détail', c'est la méthode 'select()' qui s'execute
+
+    //methode select : selectionne les données d'un seul élémnt à la fois selon son id
+    public function select() 
     {
         $id = isset($_GET['id']) ? $_GET['id'] : NULL;
-        $this->render('layout.php', 'detail.php', array(
-            "title" => "Competence: $id",
+        $this->render('layout.php', 'details2.php', array(
+            "title" => "Compétence : $id",
             "donnees" => $this->db->select($id)
         ));
     }
 
+
+    // methode delete: supprime l'élément dont l'id a été selectionné
     public function delete()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : NULL;
         $r = $this->db->delete($id);
-        $this->redirect('index.php'); // on redirige aprés la suppression
+        $this->redirect('index.php'); // on redirige après la suppression
     }
 
     public function save($op)
@@ -80,21 +85,27 @@ class CompetenceController
 
         $id = isset($_GET['id']) ? $_GET['id'] : NULL; // permet de savoir si un id a été envoyé dans l'URL, si on clique sur 'modifier' on envoi l'id dans l'URL et on le récupère, sinon c'est un ajout
 
-        $values = ($op == 'update') ? $this->db->select($id) : ''; // si on a envoyé un id dans l'URL, on l'envoi en argument de la méthode select() de entityRepository, cela permettra de selectionner toute les données de l'employé pour la modification
-
-        //var_dump($values);
+        $values = ($op == 'update') ? $this->db->select($id) : ''; // si on a envoyé un id dans l'URL, on l'envoie en argument de la méthode select() du Manager correspondant, cela permettra de selectionner toutes les données de l'elément pour la modification
 
         if($_POST)
         {
-            $r = $this->db->save(); // lorsque l'on valide le formulaire d'ajout, on execute la méthode save() du fichier EntityRepository.php
-            $this->redirect('donnees.php'); // aprés l'insertion, on redirige vers la page index.php
+            $r = $this->db->save(); // lorsque l'on valide le formulaire d'ajout, on execute la méthode save() du fichier Manager.php correspondant
+            $this->redirect('donnees.php'); // aprés l'insertion, on redirige vers la page donnees.php
         }
         
         $this->render('layout.php', 'form.php', array(
             "title" => "Competence : $title",
             "op" => $op,
             "fields" => $this->db->getFields(), // c'est ce qui va nous permettre de récupérer le nom des champs pour les définir de façon générique
-            "values" => $values // permet de récupérer toute les données de l'employé en cas de modification
+            "values" => $values // permet de récupérer toutes les données de la compétence  modifiée
         ));
+    }
+
+
+    // methode deconnexion : me renvoie sur la page index.php d mon côté front
+    public function deconnexion()
+    {
+        session_destroy();
+        $this->redirect('./../index.php');
     }
 }

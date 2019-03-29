@@ -36,7 +36,7 @@ class UserManager
 
     public function getFields() // méthode permettant de recolter les données des champs/colonne de la table, c'est un code générique, on récuperera les données de n'importe quelle table
     {
-        $q = $this->getDb()->query("DESC " . $this->table5); // DESC : description de la table
+        $q = $this->getDb()->query("DESC " . $this->table5); // DESC : ici, description de la table
         $r = $q->fetchAll(\PDO::FETCH_ASSOC);
         return array_splice($r, 1); // permet de ne pas récupérer le premier champs idEmploye dans le formulaire, dans la BDD grace à la fonction prédéfinie array_splice()
     }
@@ -76,10 +76,6 @@ class UserManager
     public function delete($id)
     {
         $q = $this->getDb()->query("DELETE FROM " . $this->table5 . " WHERE id_" . $this->table5 . '=' . (int) $id);
-
-        // ucfirst($this->table)  idEmploye
     }
 }
 
-// $a = new EntityRepository;
-// $a->getDb();

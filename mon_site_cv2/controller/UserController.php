@@ -6,33 +6,36 @@ class UserController
     private $db;
     public function __construct()
     {
-        $this->db = new \model\UserManager; // permet de récupérer une connexion à la BDD qui se trouve dans le fichier EntityRepository.php
+        $this->db = new \model\UserManager; // cette fonction me permet de recuperer la connexion a ma bdd, qui est creee dans le manager
     }
-    public function handlerRequest() // permet de savoir ce que l'internaute demande (afficher/modifier/supprimer), action de l'internaute
+
+
+    // fonction correpondant à la fonction à mettre en oeuvre selon l'action demandée par l'utilisateur
+    public function handlerRequest() 
     {
-        $op = isset($_GET['op']) ? $_GET['op'] : NULL; // si op est définie dans l'URL, on le récupère, on le stock dans $op sinon, si rien n'est défini dans l'URL, on stock NULL dans $op
+        $op = isset($_GET['op']) ? $_GET['op'] : NULL; // si l'action est définie dans l'URL, on la récupère, on la stock dans $op. Mais si rien n'est défini dans l'URL, on stock NULL dans $op et la fonction appelée sera selectAll
         try
         {
-            if($op == 'add' || $op == 'update') $this->save($op); // si on ajoute ou modifie un employé, on appel la méthode save()
-            elseif($op == 'select') $this->select(); // si on selectionne un employé, on appel la méthode select()
-            elseif($op == 'delete') $this->delete(); // si on supprime un employé, on appel la méthode delete()
-            else $this->selectAll(); // permettra d'afficher l'ensemble des employés
+            if($op == 'add' || $op == 'update') $this->save($op); // en cas d'ajout ou de modification, on appelle la méthode save()
+            elseif($op == 'select') $this->select(); // en cas de selection au detail, on appelle la méthode select()
+            elseif($op == 'delete') $this->delete(); // en cas de suppression, on appelle la méthode delete()
+            elseif($op == 'deconnexion') $this->deconnexion();// pour la déconnexion, c'est la methode deconnexion qui sera appelée
+            else $this->selectAll(); // permettra d'afficher l'ensemble des donnees. Action par defaut si rien n'est defini dans l'url
         }
         catch(Exception $e)
         {
             throw new Exception($e->getMessage()); // permet d'envoyer un message et d'arreter le script si il y a une erreur dans le bloc try
         }
     }
-    public function selectAll()
+
+
+    public function selectAll() // action par defaut, ce que l'on voit en arrivant sur la page d'accueil
     {
-        // echo 'Methode selectAll()';
-        // $r = $this->db->selectAll();
-        // echo '<pre>'; print_r($r); echo '</pre>';
         $this->render('layout.php', 'donnees.php', array(
             'title' => 'Qui suis-je :',
             'donnees' => $this->db->selectAll(),
             'fields' => $this->db->getFields(),
-            'id' => 'id_' . $this->db->table5 // affiche idEmploye, cela servira a pointé sur l'indice idEmploye du tableau de données envoyer dans le layout pour les liens voir/modifier/supprimer
+            'id' => 'id_' . $this->db->table5 // affiche l'id du profil, cela servira à pointer sur l'indice id_t_user 
         ));
     }
     // $this->render('layout.php', 'donnees.php' , 'paramètres');
@@ -61,7 +64,7 @@ class UserController
     public function select() // méthode permettant de voir le détail d'un employé, quand on clic sur le lien 'détail', c'est la méthode 'select()' qui s'execute
     {
         $id = isset($_GET['id']) ? $_GET['id'] : NULL;
-        $this->render('layout.php', 'userDetail.php', array(
+        $this->render('layout.php', 'detail.php', array(
             "title" => "Détail de l'employé ID : $id",
             "donnees" => $this->db->select($id)
         ));
@@ -96,5 +99,11 @@ class UserController
             "fields" => $this->db->getFields(), // c'est ce qui va nous permettre de récupérer le nom des champs pour les définir de façon générique
             "values" => $values // permet de récupérer toute les données de l'employé en cas de modification
         ));
+    }
+
+    public function deconnexion()
+    {
+        session_destroy();
+        $this->redirect('./../index.php');
     }
 }

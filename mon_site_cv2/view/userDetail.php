@@ -4,7 +4,7 @@
   <?php foreach($donnees as $value): ?>
     <h5 class="card-title"><?= $value['pseudo']?></h5>
     <p class="card-text"><?= implode($value) ?></p>
-    <a href="?op=update&id=1" class="btn btn-primary">Modifier</a>
+    <a href="?op=update&id=<?= $value['id']?>" class="btn btn-primary">Modifier</a>
   </div>
 </div>
 <?php endforeach; ?>

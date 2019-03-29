@@ -62,7 +62,7 @@ class CompetenceManager
 
         $q = $this->getDb()->query('REPLACE INTO ' . $this->table4 . '(id_' . $this->table4 . ',' . implode(',', array_keys($_POST)) . ') VALUES (' . $id . ',' . "'" . implode("','", $_POST) . "'" . ')');
 
-        //echo 'REPLACE INTO ' . $this->table . '(id' . ucfirst($this->table) . ',' . implode(',', array_keys($_POST)) . ') VALUES (' . $id . ',' . "'" . implode("','", $_POST) . "'" . ')';
+       
 
         /*
             - ucfirst($this->table) --> idEmploye 
@@ -76,10 +76,6 @@ class CompetenceManager
     public function delete($id)
     {
         $q = $this->getDb()->query("DELETE FROM " . $this->table4 . " WHERE id_" . $this->table4 . '=' . (int) $id);
-
-        // ucfirst($this->table)  idEmploye
     }
 }
 
-// $a = new EntityRepository;
-// $a->getDb();
